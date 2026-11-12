@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chibueze Naphtali | Data Annotator and Prompt Engineer</title>
+<meta name="description" content="Freelance data annotator for text, image, video, audio and LLM response evaluation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0D1321; --surface:#141C2F; --line:#26324D; --text:#E8EEF8; --muted:#9AA8C3;
+  --cyan:#4FD8EB; --amber:#FFB84D; --violet:#A78BFA; --rose:#FF7A90;
+  --sans:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth;background:var(--bg)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:1.0625rem;line-height:1.6}
+a{color:var(--cyan);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{max-width:64rem;margin:0 auto;padding:0 1.25rem}
+.ph{color:var(--amber);font-family:var(--mono);font-size:.92em}
+
+/* top bar */
+header{border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:1rem;padding-bottom:1rem;flex-wrap:wrap}
+.brand{font-weight:700;letter-spacing:.01em}
+nav{display:flex;gap:1.25rem;flex-wrap:wrap}
+nav a{color:#FFFFFF;text-decoration:none;font-size:.95rem}
+nav a:hover{color:var(--cyan)}
+
+/* hero */
+.hero{padding:4.5rem 0 3.5rem}
+.annot{font-size:clamp(2rem,6.2vw,3.9rem);line-height:2.05;font-weight:500;margin:0 0 1.5rem;max-width:20ch}
+.ent{position:relative;display:inline-block;padding:0 .18em;border-radius:4px;line-height:1.25;margin-bottom:.9em;background:color-mix(in srgb,var(--c) 18%,transparent);box-shadow:inset 0 -3px 0 var(--c)}
+.ent small{position:absolute;left:0;top:100%;margin-top:.3rem;font:500 .72rem/1 var(--mono);color:var(--c);white-space:nowrap;opacity:0;animation:tag .5s ease forwards;animation-delay:var(--d)}
+.e1{--c:var(--cyan);--d:.3s}.e2{--c:var(--amber);--d:.9s}.e3{--c:var(--violet);--d:1.5s}.e4{--c:var(--rose);--d:2.1s}
+@keyframes tag{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.lede{color:var(--muted);max-width:38rem;margin:0 0 2rem}
+.cta{display:flex;gap:.85rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.75rem 1.25rem;border-radius:6px;font-weight:500;text-decoration:none;border:1px solid var(--line);color:var(--text)}
+.btn.primary{background:var(--cyan);color:#06222A;border-color:var(--cyan)}
+.btn:hover{border-color:var(--cyan)}
+
+/* sections */
+section{padding:3.25rem 0;border-top:1px solid var(--line)}
+h2{font-size:1.65rem;line-height:1.2;margin:0 0 .6rem;font-weight:700}
+.sub{color:var(--muted);margin:0 0 2rem;max-width:40rem}
+.rows{display:grid;gap:0}
+.row{display:grid;grid-template-columns:12rem 1fr;gap:1rem 2rem;padding:1.25rem 0;border-top:1px solid var(--line)}
+.row:first-child{border-top:0;padding-top:0}
+.row h3{margin:0;font-size:1.1rem;font-weight:700}
+.row p{margin:0;color:var(--muted)}
+.row .m{font-family:var(--mono);font-size:.85rem;color:var(--cyan);display:block;margin-bottom:.25rem}
+
+/* process */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;gap:1rem}
+.steps li{counter-increment:s;display:grid;grid-template-columns:2.25rem 1fr;gap:.9rem}
+.steps li::before{content:counter(s);font:500 .9rem/2rem var(--mono);width:2rem;height:2rem;text-align:center;border:1px solid var(--cyan);color:var(--cyan);border-radius:50%}
+.steps strong{display:block}
+.steps span{color:var(--muted)}
+
+/* metrics */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.metric{background:var(--surface);padding:1.25rem}
+.metric b{display:block;font:500 1.6rem/1.2 var(--mono);color:var(--amber)}
+.metric span{color:var(--muted);font-size:.95rem}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:0;padding:0;list-style:none}
+.chips li{border:1px solid var(--line);background:var(--surface);padding:.35rem .8rem;border-radius:999px;font-size:.95rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.two h3{margin:0 0 .75rem;font-size:1.1rem}
+
+.note{border-left:3px solid var(--violet);padding:.25rem 0 .25rem 1rem;color:var(--muted);max-width:40rem}
+footer{border-top:1px solid var(--line);padding:2rem 0 2.5rem;color:var(--muted);font-size:.92rem}
+
+@media (max-width:640px){
+  .hero{padding-top:3rem}
+  .row{grid-template-columns:1fr;gap:.4rem}
+  .two{grid-template-columns:1fr}
+  .annot{line-height:2.1}
+}
+@media (prefers-reduced-motion:reduce){
+  .ent small{animation:none;opacity:1}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">Chibueze Naphtali · Data Annotator · Prompt Engineer</div>
+    <nav aria-label="Primary">
+      <a href="#work">What I annotate</a>
+      <a href="#process">How I work</a>
+      <a href="#experience">Experience</a>
+      <a href="#results">Results</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero">
+      <h1 class="annot">
+        <span class="ent e1">I<small>annotator</small></span>
+        label
+        <span class="ent e2">the data<small>training set</small></span>
+        that teaches
+        <span class="ent e3">AI<small>model</small></span>
+        to
+        <span class="ent e4">read, see and listen<small>modalities</small></span>.
+      </h1>
+      <p class="lede">I’m a freelance data annotator working across text, image, video, audio and LLM response evaluation. I follow your guidelines closely, flag unclear cases early, and check my own work before I hand it over.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Hire me for a project</a>
+        <a class="btn" href="#work">See what I annotate</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <h2>What I annotate</h2>
+      <p class="sub">Four kinds of work, each with its own quality checks.</p>
+      <div class="rows">
+        <div class="row">
+          <div><span class="m">text</span><h3>Text</h3></div>
+          <p>Named entity recognition, sentiment, intent and topic classification, and content moderation labels. I handle edge cases such as sarcasm, mixed sentiment and ambiguous entities, and I note the reasoning behind unclear calls.</p>
+        </div>
+        <div class="row">
+          <div><span class="m">image · video</span><h3>Image and video</h3></div>
+          <p>Bounding boxes, polygons and segmentation, object tracking across frames, and attribute tagging. I keep edges tight and labels consistent from the first frame to the last.</p>
+        </div>
+        <div class="row">
+          <div><span class="m">audio</span><h3>Audio and transcription</h3></div>
+          <p>Verbatim and clean transcription, speaker labeling, timestamps, and noise or accent tagging. I follow the style guide for fillers, overlap and unclear speech.</p>
+        </div>
+        <div class="row">
+          <div><span class="m">llm</span><h3>LLM response evaluation</h3></div>
+          <p>Ranking and comparing model answers, rating helpfulness, accuracy and safety, and writing short justifications. I check facts instead of trusting a confident tone. As a prompt engineer, I also write and test prompts, not just rate the answers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <h2>How I work</h2>
+      <p class="sub">The same routine on every project, so results stay consistent.</p>
+      <ol class="steps">
+        <li><div><strong>Read the guidelines twice</strong><span>I list anything unclear before I label a single item.</span></div></li>
+        <li><div><strong>Run a small pilot batch</strong><span>I compare it with your gold examples and adjust early.</span></div></li>
+        <li><div><strong>Label at pace, flag edge cases</strong><span>Ambiguous items get a note, not a guess.</span></div></li>
+        <li><div><strong>Review my own work</strong><span>I re-check a sample of every batch before delivery.</span></div></li>
+        <li><div><strong>Report back</strong><span>You get the data plus a short summary of issues and guideline gaps.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="wrap">
+      <h2>Results</h2>
+      <p class="sub">Figures from my annotation work to date.</p>
+      <div class="metrics">
+        <div class="metric"><b>95–100%</b><span>annotation accuracy</span></div>
+        <div class="metric"><b>1 yr 7 mo</b><span>of hands-on annotation</span></div>
+        <div class="metric"><b>4</b><span>data types: text, image, audio, video</span></div>
+        <div class="metric"><b>5</b><span>platforms, including OneForma and Outlier</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
+      <p class="sub">Annotation work on remote AI projects, plus earlier roles in property listing and accounting.</p>
+      <div class="rows">
+        <div class="row">
+          <div><span class="m">Mar 2025 to Aug 2026</span><h3>OneForma</h3></div>
+          <p>Worked on the Polly and Lighthouse projects.</p>
+        </div>
+        <div class="row">
+          <div><span class="m">Dec 2025 to Jan 2026</span><h3>Atlas Capture</h3></div>
+          <p>Annotation project work on the Atlas platform.</p>
+        </div>
+        <div class="row">
+          <div><span class="m">May 2026 to Sep 2026</span><h3>Outlier</h3></div>
+          <p>Remote AI training and evaluation work.</p>
+        </div>
+        <div class="row">
+          <div><span class="m">remote</span><h3>Handshake AI</h3></div>
+          <p>Remote project work with Handshake AI (Palo Alto).</p>
+        </div>
+        <div class="row">
+          <div><span class="m">two roles</span><h3>Lodgemate</h3></div>
+          <p>Worked as a property listing officer and as a financial accountant.</p>
+        </div>
+        <div class="row">
+          <div><span class="m">across projects</span><h3>What I did</h3></div>
+          <p>Classification, segmentation, bounding boxes and NER. Sentiment labeling and prompt evaluation. Audio transcription and speech labeling. Content moderation and safety review. Reviewing peers’ annotations to improve dataset quality.</p>
+        </div>
+        <div class="row">
+          <div><span class="m">education</span><h3>B.Eng. Mechatronics</h3></div>
+          <p>Federal University of Owerri, Imo State, Nigeria.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="expertise">
+    <div class="wrap">
+      <h2>Domain knowledge and tools</h2>
+      <p class="sub">Specialist context helps me judge the cases that generalists get wrong.</p>
+      <div class="two">
+        <div>
+          <h3>Subjects and languages</h3>
+          <ul class="chips">
+            <li>Politics and current affairs</li>
+            <li>Religion and culture</li>
+            <li>English</li>
+            <li>French</li>
+            <li>Latin</li>
+            
+          </ul>
+        </div>
+        <div>
+          <h3>Tools</h3>
+          <ul class="chips">
+            <li>Labelbox</li>
+            <li>CVAT</li>
+            <li>Appen Platform</li>
+            <li>Scale AI tools</li>
+            <li>Remotasks</li>
+            <li>Lionbridge (TELUS AI)</li>
+            <li>OneForma</li>
+            <li>Atlas AI tooling</li>
+            
+            
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2>Beyond annotation</h2>
+      <p class="sub">Skills from outside annotation that I bring to client projects.</p>
+      <ul class="chips">
+        <li>Prompt engineering</li>
+        <li>Financial accounting</li>
+        <li>Forex trading</li>
+        <li>Marketing</li>
+        <li>Property listings</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2>Let’s work together</h2>
+      <p class="sub">Tell me about your dataset, the label types and your deadline. I’m open to long-term and contract AI data labeling projects, fully remote.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:chibuezechinechem9@gmail.com" target="_blank" rel="noopener">Email me</a>
+        <a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=chibuezechinechem9@gmail.com" target="_blank" rel="noopener">Write in Gmail</a>
+        <button class="btn" id="copy" type="button" style="background:none;font:inherit;cursor:pointer">Copy email address</button>
+        
+      </div>
+      <p style="margin:1.5rem 0 0;color:var(--muted)">Or write to <span id="addr" style="color:var(--text);user-select:all">chibuezechinechem9@gmail.com</span></p>
+      <p class="note" style="margin-top:2rem">I treat client data as confidential. I don’t share, keep or reuse anything outside the project.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© Chibueze Naphtali · Freelance data annotation · <a href="mailto:chibuezechinechem9@gmail.com">chibuezechinechem9@gmail.com</a></div>
+</footer>
+<script>
+(function(){
+  var b=document.getElementById('copy');
+  if(!b)return;
+  b.addEventListener('click',function(){
+    var t='chibuezechinechem9@gmail.com';
+    function done(m){b.textContent=m;setTimeout(function(){b.textContent='Copy email address'},2000)}
+    function fallback(){
+      var r=document.createRange();r.selectNode(document.getElementById('addr'));
+      var s=getSelection();s.removeAllRanges();s.addRange(r);
+      try{document.execCommand('copy');done('Copied')}catch(e){done('Select the address above')}
+    }
+    try{navigator.clipboard.writeText(t).then(function(){done('Copied')},fallback)}catch(e){fallback()}
+  });
+})();
+</script>
+</body>
+</html>
